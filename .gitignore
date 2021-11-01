@@ -1,0 +1,28 @@
+.git/*
+
+__pycache__/
+*.py[cod]
+
+.idea
+.DS_Store
+.AppleDouble
+.LSOverride
+.vscode
+
+*.sublime-project
+*.sublime-workspace
+
+media/
+
+# Django db:
+_db._sqlite3
+db.sqlite3-journal
+
+# Environments
+.env
+.venv
+.env/
+venv/
+.env/
+env.bak/
+venv.bak/
