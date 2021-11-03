@@ -37,7 +37,8 @@ if __name__ == "__main__":
     link_to_bitly = input('Введите адрес для битлинка: ')
     try:
         if check_for_bitly_link(link_to_bitly):
-            url_count_clicks = f'https://api-ssl.bitly.com/v4/bitlinks/{link_to_bitly[7:]}/clicks/summary'
+            bitly_code = link_to_bitly[7:]  # забираем битлай код из ссылки
+            url_count_clicks = f'https://api-ssl.bitly.com/v4/bitlinks/{bitly_code}/clicks/summary'
             print(f'количество кликов по ссылке: {count_clicks(key, url_count_clicks)}')
         else:
             response = shorten_link(key, url_to_bitly, link_to_bitly)
