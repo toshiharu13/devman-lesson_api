@@ -26,3 +26,6 @@ venv/
 .env/
 env.bak/
 venv.bak/
+
+#additionally
+temp.py
