@@ -1,7 +1,8 @@
-import requests
 import os
+
+import requests
 from dotenv import load_dotenv
-load_dotenv()
+
 
 def shorten_link(token, url, link_to_bitly):
     body = {"long_url": link_to_bitly}
@@ -24,6 +25,7 @@ def check_for_bitly_link(link_to_check):
 
 
 if __name__ == "__main__":
+    load_dotenv()
     url_to_bitly = 'https://api-ssl.bitly.com/v4/bitlinks'
     key = os.getenv('KEY')
 
