@@ -34,7 +34,7 @@ if __name__ == "__main__":
     url_to_bitly = 'https://api-ssl.bitly.com/v4/bitlinks'
     key = os.getenv('KEY_TO_BITLY')
 
-    link_to_bitly = input('Веедите адрес для битлинка: ')
+    link_to_bitly = input('Введите адрес для битлинка: ')
     try:
         if check_for_bitly_link(link_to_bitly):
             url_count_clicks = f'https://api-ssl.bitly.com/v4/bitlinks/{link_to_bitly[7:]}/clicks/summary'
