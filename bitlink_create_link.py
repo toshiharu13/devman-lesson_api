@@ -43,5 +43,6 @@ if __name__ == "__main__":
         else:
             response = shorten_link(key, url_to_bitly, link_to_bitly)
             print(f'Битлинк: {response}')
-    except:
-        raise
+    except (requests.exceptions.MissingSchema,
+            requests.exceptions.ConnectionError):
+        print("Вы ввели неправильную ссылку.")
