@@ -45,13 +45,14 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     link_to_bitly = args.address
-    bitly_parse = urlparse(link_to_bitly)
+    link_parse = urlparse(link_to_bitly)
+    bitly_link = str(link_parse.netloc) + str(link_parse.path)
     try:
-        if check_for_bitly_link(bitly_parse.netloc):
-            bitly_code = str(bitly_parse.netloc)+str(bitly_parse.path)
+        if check_for_bitly_link(bitly_link):
+
             url_count_clicks = (
                 f'https://api-ssl.bitly.com/v4/bitlinks/'
-                f'{bitly_code}/clicks/summary'
+                f'{bitly_link}/clicks/summary'
             )
             print(
                 f'Количество переходов по ссылке битли: '
