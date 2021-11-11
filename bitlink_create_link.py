@@ -49,9 +49,14 @@ if __name__ == "__main__":
     try:
         if check_for_bitly_link(bitly_parse.netloc):
             bitly_code = str(bitly_parse.netloc)+str(bitly_parse.path)
-            print(bitly_code)
-            url_count_clicks = f'https://api-ssl.bitly.com/v4/bitlinks/{bitly_code}/clicks/summary'
-            print(f'Количество переходов по ссылке битли: {count_clicks(key, url_count_clicks)}')
+            url_count_clicks = (
+                f'https://api-ssl.bitly.com/v4/bitlinks/'
+                f'{bitly_code}/clicks/summary'
+            )
+            print(
+                f'Количество переходов по ссылке битли: '
+                f'{count_clicks(key, url_count_clicks)}'
+            )
         else:
             response = shorten_link(key, url_to_bitly, link_to_bitly)
             print(f'Битлинк: {response}')
