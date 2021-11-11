@@ -1,5 +1,6 @@
 import argparse
 import os
+from urllib.parse import urlparse
 
 import requests
 from dotenv import load_dotenv
@@ -27,12 +28,13 @@ def count_clicks(token, url):
 
 
 def check_for_bitly_link(link_to_check):
-    return 'bit.ly/' in link_to_check
+    return 'bit.ly' in link_to_check
 
 
 if __name__ == "__main__":
     load_dotenv()
     url_to_bitly = 'https://api-ssl.bitly.com/v4/bitlinks'
+
     key = os.getenv('KEY_TO_BITLY')
 
     parser = argparse.ArgumentParser(
@@ -42,11 +44,12 @@ if __name__ == "__main__":
         'address', help='Введите полный адрес интересующего сайта'
     )
     args = parser.parse_args()
-
     link_to_bitly = args.address
+    bitly_parse = urlparse(link_to_bitly)
     try:
-        if check_for_bitly_link(link_to_bitly):
-            bitly_code = link_to_bitly[7:]  # забираем битлай код из ссылки
+        if check_for_bitly_link(bitly_parse.netloc):
+            bitly_code = str(bitly_parse.netloc)+str(bitly_parse.path)
+            print(bitly_code)
             url_count_clicks = f'https://api-ssl.bitly.com/v4/bitlinks/{bitly_code}/clicks/summary'
             print(f'Количество переходов по ссылке битли: {count_clicks(key, url_count_clicks)}')
         else:
