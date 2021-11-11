@@ -20,3 +20,16 @@ Cклонировать проект
 Установить requirements.txt
 
       $ pip install -r requirements.txt
+
+## Запуск 
+    $ python3 bitlink_create_link.py 
+    Введите адрес для битлинка:
+  Введение данных в качестве примера ya.ru
+
+    Введите адрес для битлинка: http://ya.ru
+  Присваевание короткой ссылки:
+
+    Битлинк: https://bit.ly/3pTSEll
+
+
+
