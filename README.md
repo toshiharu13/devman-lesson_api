@@ -15,7 +15,7 @@
  - Cклонировать проект
 
 
-      $ https://github.com/toshiharu13/django-orm-watching-storage.git
+        $ https://github.com/toshiharu13/django-orm-watching-storage.git
     
 
  - Установить requirements.txt
@@ -28,7 +28,7 @@
  - Создать в проекте файл .env и записать туда такую строчку
 
 
-     KEY_TO_BITLY=ХХХХХХХХХХХХХХХХХХХХХХХХХХ
+       KEY_TO_BITLY=ХХХХХХХХХХХХХХХХХХХХХХХХХХ
 
 где "ХХХХХХХХХХХХХХХХХХХХХХХХХХ" - это ваш токен, полученый на bitly.com
 
