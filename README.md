@@ -16,11 +16,13 @@
 
 
     $ https://github.com/toshiharu13/django-orm-watching-storage.git
+    
 
  - Установить requirements.txt
 
 
       $ pip install -r requirements.txt
+      
 
  - Сгенерировать токен на bitly.com
  - Создать в проекте файл .env и записать туда такую строчку
