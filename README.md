@@ -8,16 +8,17 @@
 
 ## Системные требования
 - [Python 3](https://www.python.org/)
-- Linux OS
 
 ##  Установка
-Для установки дастоточно:
+### Для установки дастаточно:
 
-Cклонировать проект
+ - Cклонировать проект
+
 
     $ https://github.com/toshiharu13/django-orm-watching-storage.git
 
-Установить requirements.txt
+ - Установить requirements.txt
+
 
       $ pip install -r requirements.txt
 
@@ -32,10 +33,10 @@ Cклонировать проект
 ## Запуск 
     $ python3 bitlink_create_link.py 
     Введите адрес для битлинка:
-  Введение данных в качестве примера ya.ru
+  Введение данных, в качестве примера ya.ru
 
     Введите адрес для битлинка: http://ya.ru
-  Присваевание короткой ссылки:
+  Программа присваевает короткую ссылку:
 
     Битлинк: https://bit.ly/3pTSEll
 
