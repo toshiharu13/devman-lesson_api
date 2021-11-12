@@ -6,10 +6,10 @@ import requests
 from dotenv import load_dotenv
 
 
-def shorten_link(token, url, link_to_bitly):
-    body = {"long_url": link_to_bitly}
+def shorten_link(token, url, long_url):
+    body = {"long_url": long_url}
     headers = {'Authorization': token}
-    check_for_correct_link = requests.get(link_to_bitly)
+    check_for_correct_link = requests.get(long_url)
     check_for_correct_link.raise_for_status()
     response = requests.post(url, headers=headers, json=body)
     response.raise_for_status()
@@ -27,8 +27,10 @@ def count_clicks(token, url):
     return response.json()['total_clicks']
 
 
-def check_for_bitly_link(link_to_check):
-    return 'bit.ly' in link_to_check
+def check_for_bitly_link(token, url_to_check):
+    headers = {'Authorization': token}
+    response = requests.get(url_to_check, headers=headers)
+    return response.ok
 
 
 if __name__ == "__main__":
@@ -46,13 +48,11 @@ if __name__ == "__main__":
     entered_link = args.address
     link_parse = urlparse(entered_link)
     bitly_link = link_parse.netloc + link_parse.path
-    print(type(link_parse.netloc))
     try:
-        if check_for_bitly_link(bitly_link):
-
-            url_count_clicks = (
-                f'{url_to_bitly}/{bitly_link}/clicks/summary'
-            )
+        url_count_clicks = (
+            f'{url_to_bitly}/{bitly_link}/clicks/summary'
+        )
+        if check_for_bitly_link(key, url_count_clicks):
             print(
                 f'Количество переходов по ссылке битли: '
                 f'{count_clicks(key, url_count_clicks)}'
