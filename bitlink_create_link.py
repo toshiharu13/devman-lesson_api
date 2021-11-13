@@ -18,19 +18,27 @@ def shorten_link(token, url, long_url):
     return response.json()['link']
 
 
-def count_clicks(token, url):
+def count_clicks(token, entered_link, url_to_bitly):
     headers = {'Authorization': token}
-    response = requests.get(url, headers=headers)
+    prepared_link = clear_link(entered_link, url_to_bitly)
+    response = requests.get(prepared_link, headers=headers)
     response.raise_for_status()
     if 'error' in response:
         raise requests.exceptions.HTTPError(response['error'])
     return response.json()['total_clicks']
 
 
-def check_for_bitly_link(token, url_to_check):
+def check_for_bitly_link(token, entered_link, url_to_bitly):
     headers = {'Authorization': token}
-    response = requests.get(url_to_check, headers=headers)
+    prepared_link = clear_link(entered_link, url_to_bitly)
+    response = requests.get(prepared_link, headers=headers)
     return response.ok
+
+
+def clear_link(entered_link, url_to_bitly):
+    link_parse = urlparse(entered_link)
+    link_to_check = link_parse.netloc + link_parse.path
+    return f'{url_to_bitly}/{link_to_check}/clicks/summary'
 
 
 if __name__ == "__main__":
@@ -46,16 +54,11 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     entered_link = args.address
-    link_parse = urlparse(entered_link)
-    bitly_link = link_parse.netloc + link_parse.path
     try:
-        url_count_clicks = (
-            f'{url_to_bitly}/{bitly_link}/clicks/summary'
-        )
-        if check_for_bitly_link(key, url_count_clicks):
+        if check_for_bitly_link(key, entered_link, url_to_bitly):
             print(
                 f'Количество переходов по ссылке битли: '
-                f'{count_clicks(key, url_count_clicks)}'
+                f'{count_clicks(key, entered_link, url_to_bitly)}'
             )
         else:
             response = shorten_link(key, url_to_bitly, entered_link)
