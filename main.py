@@ -32,7 +32,7 @@ def count_clicks(token, entered_link, url_to_bitly):
 def check_for_bitly_link(token, entered_link, url_to_bitly):
     headers = {'Authorization': token}
     cleared_link = clear_link(entered_link)
-    prepared_link = f'{url_to_bitly}/{cleared_link}/clicks/summary'
+    prepared_link = f'{url_to_bitly}/{cleared_link}'
     response = requests.get(prepared_link, headers=headers)
     return response.ok
 
