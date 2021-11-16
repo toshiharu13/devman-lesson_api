@@ -20,7 +20,8 @@ def shorten_link(token, url, long_url):
 
 def count_clicks(token, entered_link, url_to_bitly):
     headers = {'Authorization': token}
-    prepared_link = clear_link(entered_link, url_to_bitly)
+    cleared_link = clear_link(entered_link)
+    prepared_link = f'{url_to_bitly}/{cleared_link}/clicks/summary'
     response = requests.get(prepared_link, headers=headers)
     response.raise_for_status()
     if 'error' in response:
@@ -30,15 +31,15 @@ def count_clicks(token, entered_link, url_to_bitly):
 
 def check_for_bitly_link(token, entered_link, url_to_bitly):
     headers = {'Authorization': token}
-    prepared_link = clear_link(entered_link, url_to_bitly)
+    cleared_link = clear_link(entered_link)
+    prepared_link = f'{url_to_bitly}/{cleared_link}/clicks/summary'
     response = requests.get(prepared_link, headers=headers)
     return response.ok
 
 
-def clear_link(entered_link, url_to_bitly):
+def clear_link(entered_link):
     link_parse = urlparse(entered_link)
-    link_to_check = link_parse.netloc + link_parse.path
-    return f'{url_to_bitly}/{link_to_check}/clicks/summary'
+    return link_parse.netloc + link_parse.path
 
 
 if __name__ == "__main__":
