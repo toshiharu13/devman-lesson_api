@@ -36,7 +36,7 @@
 
   Введение данных, в качестве примера ya.ru:
 
-    python3 bitlink_create_link.py http://ya.ru
+    python3 main.py http://ya.ru
 
   Программа присваевает короткую ссылку:
 
@@ -44,7 +44,7 @@
 
   Введение короткой ссылки:
 
-    python3 bitlink_create_link.py https://bit.ly/3pTSEll
+    python3 main.py https://bit.ly/3pTSEll
 
   Программа отдаёт количество переходов по короткой ссылке:
 
